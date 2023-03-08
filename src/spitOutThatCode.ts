@@ -1,10 +1,11 @@
 import vscode from 'vscode';
 import * as path from 'path';
 import fs from 'fs';
+import puppeteer from 'puppeteer-core';
 
 export default async function spitOutThatCode() {
-    let message = "hello Karan"
-    const binaryExtensions = ['.png', '.jpg', '.gif'];
+    let message = "hello Karan";
+
     if(vscode.workspace.workspaceFolders !== undefined) {
         message = `This folder looks good, let me dive in it ✨` ;
         vscode.window.showInformationMessage(message);
@@ -30,24 +31,26 @@ export default async function spitOutThatCode() {
         vscode.workspace.findFiles('**/*', excludePatterns.join(',')).then(async(files) => {
             // console.log(files);
             // reading all the files,if any file gives error then we will skip that file
-            let content = '';
-            for (const file of files) {
+            // doc.pipe(fs.createWriteStream('KaranisSexy.pdf'));
+            const contents = files.map(file => {
                 try {
-                    content += fs.readFileSync(file.fsPath, 'utf-8');
+                   return fs.readFileSync(file.fsPath, 'utf-8')
                 } catch (error) {
                     vscode.window.showErrorMessage(`This file is not good for my stomach skipping it: ${file.fsPath}`);
-                }
-            }
-            console.log(content)
-            fs.writeFile(textFile, content, (err) => {
-                if (err) {
-                    vscode.window.showErrorMessage(`Error: ${err}`);
-                } else {
-                    vscode.window.showInformationMessage(`Successfully created the pdf file`);
+                    return '';
                 }
             });
+            
+            
+            // console.log(contents);
+            
+            await exportPdf(contents);
+
+            vscode.window.showInformationMessage("Your Beautiful Pdf is ready 🥰");
+
         }
-        );
+        )
+        
 
     } 
     else {
@@ -60,6 +63,33 @@ export default async function spitOutThatCode() {
 
 
 
+function  exportPdf(data:string[]){
+
+    return vscode.window.withProgress({
+        location: vscode.ProgressLocation.Notification,
+        title: "Exporting PDF",
+    }, async (progress, token) => {
+        const browser = await puppeteer.launch({
+            executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+            //  vscode.workspace.getConfiguration('codeSpitter')['executablePath'] ||
+            //   puppeteer.executablePath(),
+            headless: false,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
+        const page = await browser.newPage();
+        console.log("this is data======================");
+        console.log("code",data);
+        await page.setContent(`<h1>Karan</h1>`);
+
+        await page.pdf({
+            path: 'karanisSexy.pdf',
+            format: 'A4',
+            printBackground: true,
+        });
+        await browser.close();
+    })       
+
+}
 
 
 // const uri = vscode.Uri.joinPath(vscode.workspace.workspaceFolders![0].uri, 'karanisSexy.pdf');
