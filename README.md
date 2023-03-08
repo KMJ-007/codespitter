@@ -5,7 +5,7 @@
 > VS code extension that spits out your whole code base for you
 
 ## Idea:
- Anshuman bhaiya, Krishna and me, we were talking about our sass and explaining how we coded all things to our non tech customer, from a dote to every feature, for explaining how much we coded to non tech guy, he give example that, if we print our whole codebase, it would be around 5000-6000 pages, we didn't think much about it, and now i am building this extension for just fun!
+ Anshuman bhaiya, Krishna and me, we were talking about our sass and explaining how we coded all things to our non tech customer, from a signle dot he sees on the screen to every feature, for explaining how much we coded to non tech guy, he give example that, if we print our whole codebase, it would be around 5000-6000 pages, we didn't think much about it, and now i am building this extension for just fun!
 
  
  

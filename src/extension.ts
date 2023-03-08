@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
 
-import helloWorld from './helloWorld';
+import spitOutThatCode from './spitOutThatCode';
 
 export function activate(context: vscode.ExtensionContext): void {
     context.subscriptions.push(
-        vscode.commands.registerCommand('VSCodeExtensionBoilerplate.helloVSCode', () =>
-            helloWorld(),
+        vscode.commands.registerCommand('VSCodeExtensionBoilerplate.printMyCode', () =>
+            spitOutThatCode(),
         ),
     );
 }
