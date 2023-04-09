@@ -1,11 +1,11 @@
 {
     "name": "codespitter",
-    "displayName": "Code Spitter",
+    "displayName": "codespitter: The Klingon Way",
     "version": "0.0.1",
     "preview": true,
-    "description": "Extension that spitts out your code",
+    "description": "Extension that spitts out your code into pdf",
     "publisher": "KaranJanthe",
-    "icon": "images/logo.png",
+    "icon": "images/commanderKor.jpeg",
     "license": "SEE LICENSE IN LICENSE",
     "main": "dist/extension.js",
     "scripts": {
