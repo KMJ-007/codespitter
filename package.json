@@ -114,6 +114,7 @@
         "yargs": "^17.6.2"
     },
     "dependencies": {
+        "pdf-lib": "^1.17.1",
         "pdfkit": "^0.13.0",
         "puppeteer-core": "^19.7.3"
     }
